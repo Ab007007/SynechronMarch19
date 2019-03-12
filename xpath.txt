@@ -1,0 +1,83 @@
+1. //htmltag
+
+2. using filters
+	//htmltag[@propertyname='propertValue']
+
+3. using functions
+	- text()
+		-- //htmltag[text()='TEXT']
+		//a[text()='Autocomplete']
+	- contains(arg1,arg2)
+		-- arg1->PropertyName or text()
+		-- arg2->Partial propertValue or PartialText
+		
+		//htmltag[contains(@propertyname,'partial propertValue')]
+		//img[contains(@src,'timer')]
+		or
+		//htmltag[contains(text(),'partialText')]
+		//li/a[contains(text(),'Enabled')]
+
+	- starts-with(arg1,arg2)
+		//h3[starts-with(text(),'Synechron')]
+4. using Regular Expressions
+	//htmltag[@propertyname1='propertValue1' and propertyname2='propertValue2']
+	//a[text()='Autocomplete' and @class='btn btn-lg']
+	//htmltag[@propertyname1='propertValue1' or propertyname2='propertValue2']
+
+	//div[@id='rb-calendar_return_cal']//td[(@class='wd day' or @class='we day' or @class='current day') and text()='10']  
+
+5. Traversing from child to parent
+	//tr[th[text()='Directed by']]//a
+
+
+	step1->
+	//a[contains(text(),'Darjeeling Holiday')]
+	
+	//div[a[contains(text(),'Darjeeling Holiday')]]
+
+	//div[div[a[contains(text(),'Darjeeling Holiday')]]]
+	//div[div[div[a[contains(text(),'Darjeeling Holiday')]]]]
+
+
+	//div[div[div[a[contains(text(),'Ooty & Kodaikanal')]]]]//p[@class='holi-listing-list-actualrate din_medium ng-scope']/span[@class='ng-binding ng-scope']
+
+	
+	
+6. Axes functions:
+//th[text()='Directed by']
+
+	//tr[th[text()='Directed by']]//a
+	//th[text()='Directed by']/following-sibling::td/a
+
+
+//a[span[text()='Plot']]//following::a
+
+
+ancestor
+
+//a[contains(text(),'Ooty & Kodaikanal')]/ancestor::div[starts-with(@id,'package_section')]//p[@class='holi-listing-list-actualrate din_medium ng-scope']/span[@class='ng-binding ng-scope']
+
+
+.//*[@id='SW']/div[1]/div[2]/div/nav/ul/li[6]/a/span[2]
+.//*[@id='package_price_21532']/span[2]
+//*[@id="package_section_30059"]/div[2]/div[1]/div[2]/p/span
+
+
+
+
+
+
+
+
+
+
+			
+	
+	
+	
+	
+	
+	
+	
+	
+	
