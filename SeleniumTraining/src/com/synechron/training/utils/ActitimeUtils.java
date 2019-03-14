@@ -10,8 +10,10 @@ public class ActitimeUtils extends DriverUtils
 
 	public static void login(String un, String pwd) 
 	{
-		driver.findElement(By.id("username")).sendKeys("admin");
-		driver.findElement(By.name("pwd")).sendKeys("manager");
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("username"))));
+		driver.findElement(By.id("username")).sendKeys(un);
+		driver.findElement(By.name("pwd")).sendKeys(pwd);
 		driver.findElement(By.id("loginButton")).click();
 		try
 		{

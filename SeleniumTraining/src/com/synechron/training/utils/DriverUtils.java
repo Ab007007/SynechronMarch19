@@ -1,16 +1,49 @@
 package com.synechron.training.utils;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverUtils
 {
-	static WebDriver driver = null;
+	public static WebDriver driver = null;
 
+	public static void executeAutoITScript(String browser)
+	{
+		switch(browser)
+		{
+		case "chrome" :
+			try
+			{
+				Runtime.getRuntime().exec("autoitScripts\\ChromeAuthHandler.exe");
+			} catch (IOException e1)
+			{
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			break;
+		case "ie" :
+			try
+			{
+				Runtime.getRuntime().exec("autoitScripts\\IEwindowsAuthHandler.exe");
+			} catch (IOException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		default : 
+			System.out.println("contact Framework development team");
+		}
+	}
 	public static WebDriver getMyDriver()
 	{
 		System.out.println("Driver Creation Called....");
@@ -19,6 +52,48 @@ public class DriverUtils
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		return driver;
 	}
+	
+	/**
+	 * 
+	 * @param type -> ff,chrome,ie
+	 * @return
+	 */
+	public static WebDriver getMyDriver(String type)
+	{
+		System.out.println("Creating a Driver with " + type);
+		switch (type)
+		{
+		case "ff":
+			 	WebDriverManager.firefoxdriver().setup();
+			 	driver = new FirefoxDriver();
+			break;
+		case "chrome":
+				WebDriverManager.chromedriver().setup();
+				driver = new ChromeDriver();
+			break;
+		case "ie":
+				WebDriverManager.iedriver().setup();
+				driver = new InternetExplorerDriver();
+			break;
+		default:
+			System.out.println("Please contact Framework Development team to suppport " + type);
+			break;
+		}
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		return driver;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	public static void launch(String url)

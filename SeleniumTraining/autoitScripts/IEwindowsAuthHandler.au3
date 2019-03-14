@@ -1,0 +1,7 @@
+WinWaitActive("Windows Security")
+Sleep(2000)
+ControlSetText("Windows Security","","Edit1","DummyUser")
+Sleep(2000)
+ControlSetText("Windows Security","","Edit2","DummyPassword")
+Sleep(2000)
+ControlClick("Windows Security","OK","Button2")
