@@ -75,7 +75,7 @@ public class ActitimeUtils extends DriverUtils
 		WebDriverWait wait = new WebDriverWait(driver, 20);
 		WebElement lougoutLink = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("logoutLink"))));
 		lougoutLink.click();
-		driver.close();
+//		driver.close();
 				
 	}
 	
